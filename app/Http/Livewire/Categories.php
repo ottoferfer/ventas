@@ -20,7 +20,7 @@ class Categories extends Component
     public function render()
     {
         $data = Category::all();
-        return view('livewire.category.categories', ['categories' => $data]);
+        return view('livewire.category.categories', ['categories' => $data])
         ->extends('layouts.theme.app')
         ->section('content');
     }

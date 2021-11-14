@@ -25,7 +25,7 @@
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/img/90x90.jpg" alt="admin-profile" class="img-fluid">
+                        <i class="far fa-user text-dark"></i>
                     </a>
                     <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">

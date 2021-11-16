@@ -46,7 +46,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    Paginación
+                    {{$categories->links()}}
                 </div>
             </div>
         </div>

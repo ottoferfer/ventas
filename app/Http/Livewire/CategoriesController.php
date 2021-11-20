@@ -83,7 +83,7 @@ class CategoriesController extends Component
     public function Update()
     {
         $rules=[
-        'name' => "required|min:3|unique:categorias,name,{$this->selected_id}"
+        'name' => "required|min:3|unique:categories,name,{$this->selected_id}"
         ];
             $messages =[
             'name.required' => 'Nombre de categoría requerido',
@@ -102,8 +102,19 @@ class CategoriesController extends Component
             $this->image->storeAs('public/categories', $customFileName);
             $imageName = $category->image;
 
-            
+            $category->image = $customFileName;
+            $category->save();
+
+            if($imageName !=null) {
+                if(file_exists('storage/categories' . $imageName))
+                {
+                    unlike('storage/categories' . $imageName);
+                }
+            }
         }
+        $this->resetUI();
+        $this->emit('category-updated', 'Categoría Actualizada');
+
     }
 
     public function resetUI()
@@ -112,5 +123,23 @@ class CategoriesController extends Component
         $this->image = null;
         $this->search = '';
         $this->selected_id = 0;
+    }
+
+    protected $listeners = [
+        'deleteRow' => 'Destroy'
+    ];
+
+    public function Destroy(Category $category)
+    {
+
+        $imageName = $category->image;
+        $category->delete();
+
+        if($imageName !=null) {
+            unlink('storage/categories/' . $imageName);
+        }
+
+        $this->resetUI();
+        $this->emit('category-deleted', 'Categoría Eliminada');
     }
 }

@@ -21,24 +21,34 @@
                         <thead class="text-white" style="background: #3B3F5C">
                             <tr>
                                 <th class="table-th text-white">DESCRIPCIÓN</th>
+                                <th class="table-th text-white">BARCODE</th>
+                                <th class="table-th text-white">CATEGORÍA</th>
+                                <th class="table-th text-white">PRECIO</th>
+                                <th class="table-th text-white">STOCK</th>
+                                <th class="table-th text-white">INV.MIN</th>
                                 <th class="table-th text-white">IMAGEN</th>
                                 <th class="table-th text-white">ACCIÓN</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach($data as $product)
                             <tr>
-                                <td><h6>{{$category->name}}</h6></td>
+                                <td><h6>{{$product->name}}</h6></td>
+                                <td><h6>{{$product->barcode}}</h6></td>
+                                <td><h6>{{$product->category}}</h6></td>
+                                <td><h6>{{$product->price}}</h6></td>
+                                <td><h6>{{$product->stock}}</h6></td>
+                                <td><h6>{{$product->alerts}}</h6></td>
                                     <td class="text-center">
                                         <span>
-                                            <img src="{{ asset('storage/categories/' . $category->image)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                            <img src="{{ asset('storage/products/' . $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                         </span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" wire:click="Edit({{$category->id}})" class="btn btn-dark mtmobile" title="Edit">
+                                        <a href="javascript:void(0)" wire:click.prevent="Edit({{$product->id}})" class="btn btn-dark mtmobile" title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="javascript:void(0)" onclick="Confirm('{{$category->id}}', '{{$category->products->count()}}')" class="btn btn-dark" title="Delete">
+                                        <a href="javascript:void(0)" onclick="Confirm('{{$product->id}}')" class="btn btn-dark" title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
@@ -46,25 +56,34 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{$categories->links()}}
+                    {{$data->links()}}
                 </div>
             </div>
         </div>
     </div>
 
-@include('livewire.category.form')
+@include('livewire.products.form')
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function(){
 
-    window.livewire.on('show-modal', msg =>{
+    window.livewire.on('product-added', msg =>{
+        $('#theModal').modal('hide');
+    });
+    window.livewire.on('product-updated', msg =>{
+        $('#theModal').modal('hide');
+    });
+    window.livewire.on('product-deleted', msg =>{
+        // noty
+    });
+    window.livewire.on('modal-show', msg =>{
         $('#theModal').modal('show');
     });
-    window.livewire.on('category-added', msg =>{
+    window.livewire.on('modal-hide', msg =>{
         $('#theModal').modal('hide');
     });
-    window.livewire.on('category-updated', msg =>{
-        $('#theModal').modal('hide');
+    window.livewire.on('hidden.bs.modal', msg =>{
+        $('.er').css('display','none');
     });
 
 });

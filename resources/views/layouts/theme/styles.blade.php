@@ -48,6 +48,23 @@
                 display: block;
             }
         }
+        .sidebar-theme #compactSidebar {
+            background: #191e3a!important;
+        }
+        .header-container .sidebarCollapse {
+            color: #3B3F5C!important;
+        }
+        .navbar .navbar-item .nav-item form.form-inline input.search-form-control {
+            font-size: 15px;
+            background-color: #3B3F5C!important;
+            padding-right: 40px;
+            padding-top: 12px;
+            border: none;
+            color: #fff;
+            box-shadow: none;
+            border-radius: 30px;
+        }
+
         </style>
 
         @livewireStyles

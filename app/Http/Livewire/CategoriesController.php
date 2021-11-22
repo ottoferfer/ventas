@@ -15,7 +15,7 @@ class CategoriesController extends Component
     use WithPagination;
 
     public $name, $search, $image, $selected_id, $pageTitle, $componentName;
-    public $pagination = 5;
+    private $pagination = 5;
 
     public function mount(){
         $this->pageTitle = 'Listado';

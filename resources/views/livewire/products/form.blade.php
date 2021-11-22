@@ -51,7 +51,7 @@
             <select wire:model="categoryid" class="form-control">
                 <option value="Elegir">Elegir</option>
                 @foreach($categories as $category)
-                <option value="{{$category->id}}">"{{$category->name}}"</option>
+                <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
             @error('categoryid') <span class="text-danger er">{{ $message }}</span> @enderror
@@ -59,9 +59,9 @@
     </div>
     <div class="col-sm-12 col-md-8">
         <div class="form-group custom-file">
-            <input type="file" class="custom-file" form-control wire:model="image"
+            <input type="file" class="custom-file-input form-control" wire:model="image"
             accept="image/x-png, image/gif, image/jpeg">
-            <label class="custom-file-label">Imagen {{$image}}</label>
+            <label class="custom-file-label">Imágen {{$image}}</label>
             @error('image') <span class="text-danger er">{{ $message }}</span> @enderror
         </div>
     </div>

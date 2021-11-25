@@ -86,17 +86,14 @@
     window.livewire.on('hidden.bs.modal', msg =>{
         $('.er').css('display','none');
     });
+    $('#theModal').on('hidden.bs.modal', function (e) {
+        $('.er').css('display','none')
+    });
 
 });
 
-function Confirm(id, products)
+function Confirm(id)
 {
-    if(products > 0)
-    {
-        swal('CATEGORÍA CON PRODUCTO RELACIONADO')
-        return;
-    }
-
     swal({
         title: 'CONFIRMAR',
         text: 'CONFIRMAS ELIMINAR?',
